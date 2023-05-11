@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {styled} from 'styled-components';
 import {Button} from '../../UI/Button/Button';
 
-export const SetSettingComponent = () => {
+type SetSettingComponentType = {
+    error:boolean
+    changeSettingMode: () => void
+}
+
+export const SetSettingComponent:FC<SetSettingComponentType> = ({error,changeSettingMode}) => {
     return (
         <>
             <SetSettings>
-                <Button title={'Set'} callback={()=>console.log(1)}/>
+                <Button title={'Set'} disabled={error} callback={changeSettingMode} />
             </SetSettings>
         </>
     )

@@ -3,16 +3,20 @@ import {CounterInfo} from './CounterInfo/CounterInfo';
 import {CounterControls} from './CounterControls/CounterControls';
 
 type CounterDisplayType = {
-    counterValue: number;
+    counterValue: number
+    isLimitValue: boolean
     increaseCounterValue: () => void
     resetCounterValue: () => void
+    changeSettingMode: () => void
 }
 
-export const CounterDisplay: FC<CounterDisplayType> = ({counterValue, increaseCounterValue, resetCounterValue}) => {
+export const CounterDisplay: FC<CounterDisplayType> = ({counterValue, ...restProps}) => {
+    const {isLimitValue} = restProps;
+
     return (
         <div className={'display'}>
-            <CounterInfo counterValue={counterValue} />
-            <CounterControls increaseCounterValue={increaseCounterValue} resetCounterValue={resetCounterValue} />
+            <CounterInfo counterValue={counterValue} isLimitValue={isLimitValue} />
+            <CounterControls {...restProps} />
         </div>
     )
 };

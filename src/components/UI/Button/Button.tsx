@@ -3,13 +3,14 @@ import {styled} from 'styled-components';
 
 type ButtonPropsType = {
     title:string
+    disabled?:boolean
     callback:()=>void
 }
 
-export const Button:FC<ButtonPropsType> = ({title, callback}) => {
+export const Button:FC<ButtonPropsType> = ({title,disabled, callback}) => {
     return (
         <>
-            <SuperButton onClick={callback}>{title}</SuperButton>
+            <SuperButton onClick={callback} disabled={disabled}>{title}</SuperButton>
         </>
     )
 };
@@ -27,5 +28,9 @@ const SuperButton = styled.button`
   cursor:pointer;
   &:active{
     transform: translateX(3px) translateY(2px);
+  }
+  &:disabled{
+        opacity: .5;
+    transform: none;
   }
 `

@@ -3,17 +3,19 @@ import {styled} from 'styled-components';
 import {Button} from '../../UI/Button/Button';
 
 type CounterControlsType = {
+    isLimitValue:boolean
     increaseCounterValue: () => void
     resetCounterValue: () => void
+    changeSettingMode: () => void
 }
 
-export const CounterControls: FC<CounterControlsType> = ({increaseCounterValue, resetCounterValue}) => {
+export const CounterControls: FC<CounterControlsType> = ({isLimitValue, increaseCounterValue, resetCounterValue,changeSettingMode}) => {
     return (
         <>
             <Controls>
-                <Button title={'Increment'} callback={increaseCounterValue} />
+                <Button title={'Increment'} callback={increaseCounterValue} disabled={isLimitValue}/>
                 <Button title={'Reset'} callback={resetCounterValue} />
-                <Button title={'Settings'} callback={() => console.log('Settings')} />
+                <Button title={'Settings'} callback={changeSettingMode} />
             </Controls>
         </>
     )
