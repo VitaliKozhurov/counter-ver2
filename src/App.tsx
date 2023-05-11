@@ -10,21 +10,30 @@ type LocalStorageType = {
 }
 
 function App() {
-    const [minCounterValue, setMinCounterValue] = useState<number>(0);
-    const [maxCounterValue, setMaxCounterValue] = useState<number>(5);
+    let min: number = 0;
+    let max: number = 5;
+    if(getStateFromLocalStorage('counter')){
+        const {minCounterValue, maxCounterValue} = getStateFromLocalStorage('counter');
+        min = minCounterValue;
+        max = maxCounterValue;
+    }
+
+    const [minCounterValue, setMinCounterValue] = useState<number>(min);
+    const [maxCounterValue, setMaxCounterValue] = useState<number>(max);
     const [counterValue, setCounterValue] = useState<number>(minCounterValue);
     const [isSettingMode, setIsSettingMode] = useState<boolean>(false);
 
-    useEffect(() => {
+    // useEffect gives us one render, we can get data fom localStorage without useEffect
+    /*useEffect(() => {
         const stateFromLS = getStateFromLocalStorage('counter');
         if (stateFromLS) {
-              const {minCounterValue, maxCounterValue} = stateFromLS;
+            const {minCounterValue, maxCounterValue} = stateFromLS;
             setCounterValue(minCounterValue);
             setMinCounterValue(minCounterValue);
             setMaxCounterValue(maxCounterValue);
         }
 
-    }, [])
+    }, [])*/
 
     const increaseCounterValue = () => {
         !isLimitValue && setCounterValue(counterValue + 1);

@@ -39,10 +39,12 @@ export const Controls: FC<ControlsType> = ({
         const value = +e.currentTarget.value;
         if ((value < 0 || value >= maxCounterValue) && !minValueError) {
             setMinValueError(true);
+            value >= maxCounterValue&& setMaxValueError(true);
             setSettingsError(true);
         }
         if (value >= 0 && value < maxCounterValue && minValueError) {
             setMinValueError(false);
+            setMaxValueError(false);
             setSettingsError(false);
         }
         changeMinCounterValue(value);
