@@ -3,15 +3,18 @@ import {styled} from 'styled-components';
 import {Button} from '../../UI/Button/Button';
 
 type SetSettingComponentType = {
-    error:boolean
+    error: boolean
     changeSettingMode: () => void
 }
 
-export const SetSettingComponent:FC<SetSettingComponentType> = ({error,changeSettingMode}) => {
+export const SetSettingComponent: FC<SetSettingComponentType> = ({error, changeSettingMode}) => {
+    const setAllSettings = () => {
+        !error&&changeSettingMode()
+    }
     return (
         <>
             <SetSettings>
-                <Button title={'Set'} disabled={error} callback={changeSettingMode} />
+                <Button title={'Set'} disabled={error} callback={setAllSettings} />
             </SetSettings>
         </>
     )

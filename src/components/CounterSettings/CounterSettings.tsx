@@ -12,16 +12,14 @@ type CounterSettingsType = {
 
 export const CounterSettings: FC<CounterSettingsType> = ({changeSettingMode, ...restProps}) => {
     const [error, setError] = useState<boolean>(false);
-    const setSettingsError = (value:boolean) => {
+    const setSettingsError = (value: boolean) => {
         setError(value)
     }
 
     return (
         <div className={'display'}>
             <Controls {...restProps} setSettingsError={setSettingsError} />
-            <SetSettingComponent
-                changeSettingMode={changeSettingMode}
-                error={error} />
+            <SetSettingComponent changeSettingMode={changeSettingMode} error={error} />
         </div>
     )
 };
